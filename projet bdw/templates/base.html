@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Placement de briques</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	<header>
+		<img src="/D/LIFAPDW/projet bdw/static/images/logo.jpeg" alt="Logo du site" id="logo">
+		<h2>Bienvenue</h2>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="/">Accueil</a></li>
+			<li><a href="/autres">Autres</a></li>
+			<li><a href="https://perso.liris.cnrs.fr/fabien.duchateau/BDW/" target="_blank">Lien BDW</a></li>
+		</ul>
+	</nav>
+	<main>
+		{% block content%}
+		{% endblock %}
+	</main>
+	<footer>
+		<p>2024 Lego.</p>
+	</footer>
+</body>
+</html>
