@@ -1,0 +1,149 @@
+CREATE TABLE ACCOMPAGNER (
+  PRIMARY KEY (idbri, idphoto, idconst),
+  idbri   INTEGER NOT NULL,
+  idphoto INTEGER NOT NULL,
+  idconst INTEGER NOT NULL
+);
+
+CREATE TABLE BOITE (
+  PRIMARY KEY (coderef),
+  coderef      INTEGER NOT NULL,
+  nomofficiel  VARCHAR(42),
+  prixofficiel REAL
+);
+
+CREATE TABLE BRIQUE (
+  PRIMARY KEY (idbri),
+  idbri      INTEGER NOT NULL,
+  nombri     VARCHAR(42),
+  longbri    INTEGER,
+  largbri    INTEGER,
+  hautbri    INTEGER,
+  formebri   VARCHAR(42),
+  couleurbri VARCHAR(42),
+  listemc    VARCHAR(42),
+  idconst    INTEGER NOT NULL
+);
+
+CREATE TABLE CONFIGURATION (
+  PRIMARY KEY (valeurconfig, propconfig),
+  valeurconfig INTEGER NOT NULL,
+  propconfig   VARCHAR(42)
+);
+
+CREATE TABLE CONSTRUCTION (
+  PRIMARY KEY (idconst),
+  idconst       INTEGER NOT NULL,
+  themeconst    VARCHAR(42),
+  descconst     VARCHAR(42),
+  anneesorconst DATE,
+  longconst     INTEGER,
+  largconst     INTEGER,
+  hautconst     INTEGER,
+  agerecom      INTEGER NOT NULL,
+  coderef       VARCHAR(42),
+  nomamateur    VARCHAR(42),
+  liscamateur   VARCHAR(42)
+);
+
+CREATE TABLE CRITERE (
+  PRIMARY KEY (idbri_1, idbri_2, idcritere),
+  idbri_1       INTEGER NOT NULL,
+  idbri_2       INTEGER NOT NULL,
+  idcritere     INTEGER NOT NULL,
+  nomcritere    VARCHAR(42),
+  commencritere VARCHAR(42)
+);
+
+CREATE TABLE EST_POSSEDER (
+  PRIMARY KEY (idconst_1, numetape_1, idconst_2, numetape_2),
+  idconst_1          INTEGER NOT NULL,
+  numetape_1         INTEGER NOT NULL,
+  idconst_2          INTEGER NOT NULL,
+  numetape_2         INTEGER NOT NULL,
+  instructionredigee VARCHAR(42)
+);
+
+CREATE TABLE ETAPE (
+  PRIMARY KEY (idconst, numetape),
+  idconst  INTEGER NOT NULL,
+  numetape INTEGER NOT NULL,
+  image    VARCHAR(42)
+);
+
+CREATE TABLE FABRIQUER (
+  PRIMARY KEY (villeus, idbri),
+  villeus     VARCHAR(42) NOT NULL,
+  idbri       INTEGER NOT NULL,
+  datebri     DATE,
+  quantitebri INTEGER
+);
+
+CREATE TABLE JOUEUSE (
+  PRIMARY KEY (idjou),
+  idjou          INTEGER NOT NULL,
+  prenomjou      VARCHAR(42),
+  dateinscripjou DATE,
+  avatarjou      VARCHAR(42),
+  idpartie       INTEGER NOT NULL
+);
+
+CREATE TABLE PARTIEJEU (
+  PRIMARY KEY (idpartie),
+  idpartie           INTEGER NOT NULL,
+  datedebpartie      DATE,
+  datefinpartie      DATE,
+  scorepartie        INTEGER,
+  joueusegagnepartie VARCHAR(42),
+  valeurconfig       INTEGER NOT NULL
+);
+
+CREATE TABLE PHOTOS (
+  PRIMARY KEY (idphoto),
+  idphoto     INTEGER NOT NULL,
+  titrephoto  VARCHAR(42),
+  descphoto   VARCHAR(42),
+  cheminphoto VARCHAR(42)
+);
+
+CREATE TABLE TOURS (
+  PRIMARY KEY (idpartie, numerotour),
+  idpartie   INTEGER NOT NULL,
+  numerotour INTEGER NOT NULL,
+  idbri      INTEGER NOT NULL,
+  descaction VARCHAR(42),
+  idjou      INTEGER NOT NULL
+);
+
+CREATE TABLE USINE (
+  PRIMARY KEY (villeus),
+  villeus VARCHAR(42) NOT NULL,
+  paysus  VARCHAR(42)
+);
+
+ALTER TABLE ACCOMPAGNER ADD FOREIGN KEY (idconst) REFERENCES CONSTRUCTION (idconst);
+ALTER TABLE ACCOMPAGNER ADD FOREIGN KEY (idphoto) REFERENCES PHOTOS (idphoto);
+ALTER TABLE ACCOMPAGNER ADD FOREIGN KEY (idbri) REFERENCES BRIQUE (idbri);
+
+ALTER TABLE BRIQUE ADD FOREIGN KEY (idconst) REFERENCES CONSTRUCTION (idconst);
+
+ALTER TABLE CONSTRUCTION ADD FOREIGN KEY (coderef) REFERENCES BOITE (coderef);
+
+ALTER TABLE CRITERE ADD FOREIGN KEY (idbri_2) REFERENCES BRIQUE (idbri);
+ALTER TABLE CRITERE ADD FOREIGN KEY (idbri_1) REFERENCES BRIQUE (idbri);
+
+ALTER TABLE EST_POSSEDER ADD FOREIGN KEY (idconst_2, numetape_2) REFERENCES ETAPE (idconst, numetape);
+ALTER TABLE EST_POSSEDER ADD FOREIGN KEY (idconst_1, numetape_1) REFERENCES ETAPE (idconst, numetape);
+
+ALTER TABLE ETAPE ADD FOREIGN KEY (idconst) REFERENCES CONSTRUCTION (idconst);
+
+ALTER TABLE FABRIQUER ADD FOREIGN KEY (idbri) REFERENCES BRIQUE (idbri);
+ALTER TABLE FABRIQUER ADD FOREIGN KEY (villeus) REFERENCES USINE (villeus);
+
+ALTER TABLE JOUEUSE ADD FOREIGN KEY (idpartie) REFERENCES PARTIEJEU (idpartie);
+
+ALTER TABLE PARTIEJEU ADD FOREIGN KEY (valeurconfig) REFERENCES CONFIGURATION (valeurconfig);
+
+ALTER TABLE TOURS ADD FOREIGN KEY (idjou) REFERENCES JOUEUSE (idjou);
+ALTER TABLE TOURS ADD FOREIGN KEY (idbri) REFERENCES BRIQUE (idbri);
+ALTER TABLE TOURS ADD FOREIGN KEY (idpartie) REFERENCES PARTIEJEU (idpartie);

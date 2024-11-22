@@ -1,0 +1,134 @@
+body {
+    background-color: #f3f0ff;
+}
+
+header,
+nav,
+main,
+footer {
+    padding: 1em 0;
+}
+
+header {
+    background-color: #FF9900;
+    text-align: center;
+    border-radius: 1em;
+}
+
+#div-central {
+    display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+    margin: auto;
+	box-sizing: border-box;
+	height: 100%;
+}
+
+nav {
+	flex : 2;
+    background-color: #b59ff7;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+	margin-left: 2em;
+    line-height: 2em;
+	
+	display: block;
+	list-style-type: square;
+}
+
+nav > ul {
+	padding-left: 0.5em;
+}
+
+nav a {
+    display: list-item;
+	list-style-position: inside;
+	color: #0000FF;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #FAFAD2;
+    text-decoration: none;
+}
+
+main {
+	flex : 10;
+    background-color: #FFFFFF;
+    padding-left: 3em;
+}
+
+footer {
+	display: flex;
+	justify-content: space-around;
+    background-color: #669933;
+    border-radius: 1em;
+}
+
+img {
+	opacity: 0.9;
+}
+
+.fond-jaune {
+	background-color: yellow;
+}
+
+.alert-error {
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0rem;
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+    color: rgb(0, 0, 0);
+    background-color: #ff00003d;
+    border-color: #ff0000;
+}
+
+.alert-success {
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0rem;
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+    color: rgb(0, 0, 0);
+    background-color: #48ff004e;
+    border-color: #00ff00;
+}
+
+.alert-warning {
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: rgb(0, 0, 0);
+    background-color: #ffda07c8;
+    border-color: #ffb300;
+}
+
+#paragraphe {
+	background-color:#c5b9ed;
+	font-style: italic;
+	text-align: justify;
+	margin-left: 2em;
+	border-left: 0.5em solid #a195c9;
+	padding-left: 1em;
+}
+
+#stat {
+	
+}
+
+table {
+	
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td {
+	width: 3em;
+	height: 3em;
+	text-align: center;
+	border: 0.1em solid black;
+}
+
+.grise {
+	background-color: lightgray;
+}

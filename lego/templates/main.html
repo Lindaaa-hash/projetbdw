@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <base href="/">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link type="text/css" rel="stylesheet" href="/lego/static/css/style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/lego/static/img/pioche.png" />
+  <title>Legos!!</title>
+</head>
+
+<body>
+  {% include 'header.html' %}
+
+  <div id="div-central">
+    {% include 'menu.html' %}
+  
+    <main>
+      {% block main_content %}{% endblock %}
+    </main>
+  </div>
+
+  {% include 'footer.html' %}
+</body>
+</html>

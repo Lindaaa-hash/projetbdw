@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+
+{% block main_content %}
+<h2>Jouons ensemble à un jeu de legos!</h2>
+
+<p id="paragraphe">
+	Essayez de faire de votre mieux afin d'avoir le meilleur score!
+	<br>
+	Utilisez le menu à gauche pour découvrir les fonctionnalités de ce site.
+</p>
+
+<p>Que faire sur ce site ?</p>
+<ul>
+	<li>Tutoriel</li>
+	<li>Jouer</li>
+	<li>...</li>
+</ul>
+
+<div>
+<!-- Image de la grille de jeu? -->
+</div>
+
+<p id="stat" >
+	Nombre d'instances de pieces:
+	{% for instance in REQUEST_VARS['piece'] %}
+    <li>{{ instance[0] }}</li>
+	{% endfor %}
+	<br>
+	Nombre d'instances d'usines:
+	{% for instance in REQUEST_VARS['usine'] %}
+    <li>{{ instance[0] }}</li>
+	{% endfor %}
+	<br>
+	Nombre d'instances de photos:
+	{% for instance in REQUEST_VARS['photos'] %}
+    <li>{{ instance[0] }}</li>
+	{% endfor %}
+	<br>
+	
+	<br>
+	Les 5 couleurs ayant le plus de briques: {{ pluscouleur }}
+	<br>
+	Nom de joueuse: {{ nomj }}
+	Score minimal: {{ scoremin }}
+	Score maximal: {{ scoremax }}
+	<br>
+	En {{ mois }} {{ annee }}, le nombre moyen de tours était de {{ nbmoy }}
+	<br>
+	Top 3 des parties avec les plus grandes pieces:
+</p>
+
+{% include 'message.html' %}
+
+{% endblock %}
