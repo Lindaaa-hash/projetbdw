@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LEGOS!!!</title>
+	<link rel="stylesheet" href="/LIFAPDW/projet bdw/static/css/styles.css">
+</head>
+<body>
+	<header>
+		<div style="float: left;">
+		<img src="/LIFAPDW/projet bdw/static/images/pioche.png" alt="Logo du site" id="logo" width="15%" height="15%">
+		</div>
+		<h1 align="center"> Legos!!!</h1>
+		
+	</header>
+	<nav>
+		<h2 align="center" >Bienvenue sur notre site</h2>
+		<br>
+		<ul>
+			<li><a href="/LIFAPDW/projet bdw/templates/accueil.html" >Accueil</a></li>
+			<li><a href="/LIFAPDW/projet bdw/templates/jouer.html">Jouer</a></li>
+			<li><a href="https://perso.liris.cnrs.fr/fabien.duchateau/BDW/" target="_blank">Lien BDW</a></li>
+		</ul>
+	</nav>
+	<main>
+		{% block content%}
+		<h2>Jouons ensemble aux Legos!!</h2>
+		<p id="paragraphe">
+			Essayer de faire de votre mieux afin d'avoir le meilleur score.
+			<br>
+			Utilisez le menu en haut à gauche pour découvrir les fonctionnalités de ce site.
+		</p>
+		{% endblock %}
+	</main>
+	<footer>
+		<p>2024 Lego.</p>
+	</footer>
+</body>
+</html>

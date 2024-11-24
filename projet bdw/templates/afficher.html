@@ -1,0 +1,47 @@
+
+
+
+<section id="grille">
+    <h2>Grille de Jeu</h2>
+    <table>
+        {% for row in grille %}
+        <tr>
+            {% for cell in row %}
+            <td class="{{ 'cible' if cell == 1 else 'vide' }}"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+
+<section id="pioche">
+    <h2>Pioche</h2>
+    <form method="POST" action="/selection-brique">
+        {% for brique in pioche %}
+        <div>
+            <input type="radio" name="brique_id" value="{{ brique['id_brique'] }}" id="brique-{{ loop.index }}" required>
+            <label for="brique-{{ loop.index }}">
+                {{ brique['nom'] }} - {{ brique['largeur'] }}x{{ brique['longueur'] }} - {{ brique['couleur'] }}
+            </label>
+        </div>
+        {% endfor %}
+        <button type="submit">Sélectionner</button>
+    </form>
+</section>
+
+<section id="brique-selectionnee">
+    <h2>Brique Sélectionnée</h2>
+    <p>Vous avez sélectionné : {{ brique['nom'] }} - {{ brique['largeur'] }}x{{ brique['longueur'] }} - {{ brique['couleur'] }}</p>
+</section>
+
+<section id="nouvelle-pioche">
+    <h2>Nouvelle Pioche</h2>
+    <p>Une nouvelle brique a été ajoutée à la pioche :</p>
+    <div>
+        {{ nouvelle_brique['nom'] }} - {{ nouvelle_brique['largeur'] }}x{{ nouvelle_brique['longueur'] }} - {{ nouvelle_brique['couleur'] }}
+    </div>
+    <a href="/pioche">Revenir à la grille</a>
+</section>
+
+

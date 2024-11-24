@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p id="stat">
+			<h2>Statistiques générales</h2>
+			<ul>
+				<li>Nombre total de joueurs : {{ nb_joueuses }}</li>
+				<li>Nombre total de parties : {{ nb_parties }}</li>
+				<li>Nombre total de briques : {{ nb_briques }}</li>
+			</ul>
+</p>
+
+<section>
+	<h4>Top 5 des couleurs les plus utilisées</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Couleur</th>
+				<th>Nombre de briques</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for couleur, nb in top_couleurs %}
+            <tr>
+                <td>{{ couleur }}</td>
+                <td>{{ nb }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h4>Parties Spéciales</h4>
+    <ul>
+        <li>Partie avec le plus grand nombre de pièces défaussées : {{ partie_max_defausse }}</li>
+        <li>Partie avec le plus petit nombre de pièces défaussées : {{ partie_min_defausse }}</li>
+        <li>Partie avec le plus grand nombre de pièces piochées : {{ partie_max_pioches }}</li>
+        <li>Partie avec le plus petit nombre de pièces piochées : {{ partie_min_pioches }}</li>
+    </ul>
+</section>
+
+<section>
+    <h4>Top-3 des Parties avec les Plus Grandes Pièces</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Partie</th>
+                <th>Dimensions de la Plus Grande Pièce</th>
+                <th>Nombre de Pièces Placées</th>
+            </tr>
+        </thead>
+        <tbody>
+			{% for partie, dimensions, nb_pieces in top_parties_grandes_pieces %}
+            <tr>
+                <td>{{ partie }}</td>
+                <td>{{ dimensions }}</td>
+                <td>{{ nb_pieces }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
+
+
+
