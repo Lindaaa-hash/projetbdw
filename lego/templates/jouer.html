@@ -107,13 +107,30 @@
 
 </table>
 
-<form method="post">
-	<label for="idbrique"> Quelle brique? </label>
-	<label type="radio" id="id" name="jsp" value="jsp" ></label>
-	<label type="radio" id="id" name="jsp" value="jsp" ></label>
-	<label type="radio" id="id" name="jsp" value="jsp" ></label>
-	<label type="radio" id="id" name="jsp" value="jsp" ></label>
+<form method="POST" action="http://localhost:4242/select_piece">
+    <h3>Choisir une pièce:</h3>
+    {% for piece in pieces %}
+        <div>
+            <input type="radio" id="piece_{{ piece[0] }}" name="selected_piece" value="{{ piece[0] }}">
+            <label for="piece_{{ piece[0] }}">
+                    Piece ID: {{ piece[0] }} - Length: {{ piece[1] }}, Width: {{ piece[2] }}, Height: {{ piece[3] }}, Color: {{ piece[4] }}
+            </label>
+        </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
 </form>
+
+<h2>Piece choisie:</h2>
+    <p>
+        ID: {{ selected_piece[0] }} <br>
+        Length: {{ selected_piece[1] }}, Width: {{ selected_piece[2] }}, Height: {{ selected_piece[3] }}, Color: {{ selected_piece[4] }}
+    </p>
+
+    <h2>Nouvelle piece ajoutée:</h2>
+    <p>
+        ID: {{ new_piece[0] }} <br>
+        Length: {{ new_piece[1] }}, Width: {{ new_piece[2] }}, Height: {{ new_piece[3] }}, Color: {{ new_piece[4] }}
+    </p>
 
 
 {% endblock %}

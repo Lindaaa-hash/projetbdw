@@ -3,6 +3,7 @@ from jinja2 import Template
 import psycopg
 from psycopg import sql
 import toml
+import random
 
 def get_connexion(host, username, password, db, schema):
     try:
@@ -41,3 +42,30 @@ def accueil(request):
             message = "Aucun lego dans la base."
         print(f"Message: {message}")
     print(message)
+    
+def get_random_pieces(conn, limit=4):
+    with conn.cursor() as cursor:
+        cursor.execute("""
+            SELECT * 
+            FROM piece
+            WHERE longueur <= 2 OR largeur <= 2
+            ORDER BY RANDOM()
+            LIMIT %s;
+        """, (limit,))
+        return cursor.fetchall()
+
+def select_piece():
+    conn = get_connection()
+    if request.method == "POST":
+        selected_id = request.form.get("selected_piece")
+
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM piece WHERE id = %s;", (selected_id,))
+            selected_piece = cursor.fetchone()
+
+        print("Piece choisie: ", selected_piece)
+
+        # Replace with a new random
+        new_piece = get_random_pieces(conn, limit=1)[0]
+        print("Nouvelle piece:", new_piece)
+        

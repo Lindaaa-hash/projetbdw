@@ -91,6 +91,19 @@ def get_table_like(connexion, nom_table, like_pattern):
 
 def score_joueuse(connexion, nom_joueuse):
     
-    query=sql.SQL("SELECT prenomjou, scorepartie FROM joueuse INTER partiejeu WHERE idpartie LIKE (SELECT idpartie)")
+    query=sql.SQL("SELECT prenomjou, MIN(scorepartie) AS ScoreMinimal, MAX(scorepartie) as ScoreMaximal FROM joueuse JOIN partiejeu USING (idJou)")
     
     return execute_select_query(connexion, query)
+
+
+def nombre_moy_tours(connexion, mois, annee):
+    
+    query=sql.SQL("SELECT EXTRACT(YEAR FROM pj.datedebpartie) AS annee, EXTRACT (MONTH FROM pj.datedebpartie) AS mois, AVG(tours_jeu) as toursMoyens FROM PARTIEJEU pj JOIN (SELECT idpartie, COUNT(*) AS tours_jeu FROM TOURS GROUP BY idpartie) t ON pj.idpartie = t.idpartie GROUP BY EXTRACT (YEAR FROM pj.datedebpartie), EXTRACT(MONTH FROM pj.datedebpartie) ORDER BY annee, mois)")
+    
+    return execute_select_query(connexion, query)
+    
+def random_brique(connexion, brique):
+    
+    query=sql.SQL("SELECT * FROM piece WHERE longueur<= 2 OR largeur <=2 ORDER BY RAND() LIMIT 4")
+    
+    return execute_select_query(connexion, query, [brique])
